@@ -47,6 +47,7 @@ def train(model, train_loader, val_loader, test_loader, optimizer, criterion, de
     train_steps_per_epoch = len(train_loader)
     total_train_steps = max(1, train_steps_per_epoch)
     for epoch in range(start_epoch, NUM_EPOCHS + 1):
+        model.train()
         loader = tqdm(train_loader, total=total_train_steps, desc=f"Epoch {epoch} [{PRECISION}]", disable=not progress)
         for batch in loader:
             x = batch[:, :-1].to(device, non_blocking=True)
